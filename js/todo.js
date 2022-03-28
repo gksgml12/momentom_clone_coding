@@ -6,8 +6,7 @@ const TODOS_KEY="todos";
 let toDos=[];
 
 function saveToDos(){
-    localStorage.setItem("todos",JSON.stringify(toDos));//localStorage는 array형태로 저장하는 법
-    // console.log(JSON.parse(localStorage.getItem("todos")));
+    localStorage.setItem("todos",JSON.stringify(toDos));//sting화해서 저장(localStorage에 array형태로 저장하는 법)
 }
 
 function deleteToDo(event) {
@@ -29,6 +28,7 @@ function paintToDo(newTodoObj) {
     li.appendChild(button)
     toDoList.appendChild(li)
 }
+//<li><span></span><button></button></li>
 
 function handleToDoSubmit(event) {
     event.preventDefault();
@@ -36,7 +36,7 @@ function handleToDoSubmit(event) {
     toDoInput.value=""; //값 저장하고는 출력값 지움
     const newTodoObj = { 
         text:newTodo,
-        id:Date.now() //동명 todo 일때 구분할 수 있는 값
+        id:Date.now() //동명 todo 일때 구분할 수 있는 값(밀리초)
     };
     toDos.push(newTodoObj);
     paintToDo(newTodoObj);
@@ -44,10 +44,6 @@ function handleToDoSubmit(event) {
 }
 
 toDoForm.addEventListener("submit",handleToDoSubmit);
-
-// function sayHello(item){
-//     console.log("hello",item)
-// }
 
 const savedToDos=localStorage.getItem(TODOS_KEY);
 

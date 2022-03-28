@@ -4,17 +4,16 @@ function onGeoOk(position){
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
-    // console.log(url)
     fetch(url).then(response => response.json()).then(data => {
-        const city = document.querySelector("#weather span:first-Child")
-        const weather = document.querySelector("#weather span:last-Child")
+        const city = document.querySelector("#weather p:first-Child")
+        const weather = document.querySelector("#weather p:last-Child")
         weather.innerText = `${data.weather[0].main} / ${data.main.temp}`
         city.innerText = data.name;
         });
 }
 
 function onGeoError(){
-    alert("Can't find you")
+    alert("Can't find you. No weather for ypu")
 }
 
 navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError)
